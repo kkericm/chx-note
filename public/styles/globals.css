@@ -1,0 +1,116 @@
+
+:root {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
+:root {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+.dark {
+    --l-highlight-stand: #a9c4b2;
+    --highlight-stand: #92aa9a;
+    --b-highlight-stand: #728578;
+    --offcolor-stand: #212121;
+    --b-offcolor-stand: #393e3a;
+    --b1-offcolor-stand: #333834;
+
+    --highlight-error: #a45959;
+    --offcolor-error: #420000;
+    --b-offcolor-error: #422121;
+}
+.light {
+    --l-highlight-stand: #52b372;
+    --highlight-stand: #1c4e2c;
+    --b-highlight-stand: #306a44;
+    --offcolor-stand: #dddddd;
+    --b-offcolor-stand: #b8c6bb;
+    --b1-offcolor-stand: #95a698;
+
+    --highlight-error: #db7777;
+    --offcolor-error: #600000;
+    --b-offcolor-error: #6d3737;
+}
+
+:focus {
+    outline: none;
+}
+
+body {
+    margin: 0;
+    background-color: var(--offcolor-stand);
+    color: var(--highlight-stand);
+    display: grid;
+    justify-items: center;
+}
+
+input, button, textarea {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-weight: 500;
+}
+
+input.default {
+    color: var(--highlight-stand);
+    width: calc(100% - 3rem);
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    background-color: var(--offcolor-stand);
+    border: none;
+    border-radius: .5rem;
+}
+input.default:focus, & input.default:focus {
+    outline: none;
+}
+
+button.default {
+    z-index: 1;
+    user-select: none;
+    padding: .5rem 1rem;
+    border: none;
+    font-size: 1rem;
+    border-radius: .5rem;
+    font-weight: 800;
+    background-color: transparent;
+    color: var(--highlight-stand);
+    cursor: pointer;
+
+    transition: fill 100ms, color 100ms, background-color 100ms;
+}
+button.default:hover {
+    background-color: var(--highlight-stand);
+    color: var(--b-offcolor-stand);
+}
+
+a.a-default {
+    z-index: 1;
+    user-select: none;
+    padding: .5rem 1rem;
+    border: none;
+    font-size: 1rem;
+    border-radius: .5rem;
+    font-weight: 800;
+    background-color: transparent;
+    color: var(--highlight-stand);
+    cursor: pointer;
+
+    transition: fill 100ms, color 100ms, background-color 100ms;
+    
+    &:hover {
+        background-color: var(--highlight-stand);
+        color: var(--b-offcolor-stand);
+    }
+}
+
+.b-8 {
+    font-weight: 800;
+}
+
+.icon-button {
+    border-radius: 100px;
+    padding: none;
+}
+
+.non {
+    display: none;
+}

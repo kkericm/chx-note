@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChX Note | Validação</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/icon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="/styles/globals.css">
+    <link rel="stylesheet" href="/styles/validation.css">
+</head>
+</head>
+<body class="dark">
+    <form action="/validation" method="post">
+        <span class="title">Validação</span>
+        <span class="text">Insira no campo abaixo o código que foi enviado para <span class="email"><%= email %></span>.</span>
+        <input type="hidden" name="email" value="<%= email %>">
+        <input type="text" name="token" class="default" placeholder="Digite seu código" maxlength="6" required minlength="6" pattern="[0-9]{6}">
+        <button type="submit" class="default">Verificar</button>
+    </form>
+</body>
+</html>

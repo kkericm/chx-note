@@ -1,0 +1,534 @@
+
+button {
+    padding: .5rem 1rem;
+    border: none;
+    border-radius: .5rem;
+    font-weight: 800;
+    background-color: var(--b-offcolor-stand);
+    color: var(--highlight-stand);
+    cursor: pointer;
+
+    transition: color 100ms, background-color 100ms;
+}
+button:hover {
+    background-color: var(--highlight-stand);
+    color: var(--b-offcolor-stand);
+}
+
+header {
+    position: sticky;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    padding: .5rem 1.5rem;
+    background-color: var(--b-offcolor-stand);
+    color: var(--highlight-stand);
+    width: calc(100% - 3rem);
+    
+    & .h-1 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 700px;
+    }
+    & .text-logo {
+        display: flex;
+        column-gap: 1rem;
+        font-weight: 800;
+        font-size: large;
+        align-items: center;
+        text-decoration: none;
+        color: var(--highlight-stand);
+    }
+    & .text-logo > img {
+        fill: red;
+        stroke: rgb(255, 0, 0);
+    }
+    & .user-data {
+        display: flex;
+        align-items: center;
+        column-gap: .5em;
+        color: var(--b-highlight-stand);
+        font-weight: 400;
+        font-size: small;
+
+        & .icon-button {
+            color: var(--highlight-stand);
+            text-decoration: none;
+            width: fit-content;
+            height: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 100%;
+            transition: fill 100ms, color 100ms, background-color 100ms;
+        }
+        & .icon-button:hover {
+            color: var(--b-offcolor-stand);
+            background-color: var(--highlight-stand);
+        }
+        & .user-name {
+            font-weight: 900;
+        }
+    }
+}
+
+main {
+    position: relative;
+    width: calc(100% - 2rem);
+    max-width: 700px;
+    margin: 1rem;
+    padding-inline: 1rem;
+    
+    display: grid;
+    /* justify-content: center; */
+
+    row-gap: 1rem;
+}
+
+nav {
+    bottom: 1rem;
+    z-index: 1;
+    width: 100%;
+    max-width: 700px;
+    display: grid;
+    row-gap: .5rem;
+    grid-template-columns: repeat(2, auto);
+    justify-content: space-between;
+
+    & button {
+        width: fit-content;
+        justify-self: end;
+        padding: .5rem 1rem;
+        border: none;
+        border-radius: .5rem;
+        font-weight: 800;
+        background-color: var(--b-offcolor-stand);
+        color: var(--highlight-stand);
+        cursor: pointer;
+
+        transition: color 100ms, background-color 100ms;
+    }
+    & button:hover {
+        background-color: var(--highlight-stand);
+        color: var(--b-offcolor-stand);
+    }
+    & .search-results {
+        display: flex;
+        align-items: center;
+        column-gap: 1rem;
+    }
+    & .close {
+        /* background-color: var(--b-offcolor-stand); */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        text-decoration: none;
+        color: var(--highlight-stand);
+
+        transition: 
+            background-color 100ms,
+            color 100ms;
+    }
+    & .close:hover {
+        background-color: var(--highlight-stand);
+        color: var(--b-offcolor-stand);
+    }
+
+    & input {
+        padding: .5rem;
+        border: none;
+        border-radius: .5rem;
+        background-color: var(--b-offcolor-stand);
+        color: var(--highlight-stand);
+        margin-right: .2rem;
+    }
+    & input:hover {
+        color: var(--offcolor-stand);
+        background-color: var(--highlight-stand);
+    }
+    & input:focus {
+        outline: none;
+    }
+    & input::placeholder {
+        opacity: .8;
+        color: var(--b-highlight-stand);
+    }
+    & input:hover::placeholder {
+        opacity: .8;
+        color: var(--offcolor-stand);
+    }
+}
+
+.note-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    
+    gap: .5rem;
+}
+
+.note {
+    padding: .75rem;
+    display: grid;
+    row-gap: .5rem;
+    background-color: var(--b-offcolor-stand);
+    color: var(--highlight-stand);
+    border-radius: .5rem;
+    grid-template-rows: 1em auto;
+    height: 7.5em;
+    cursor: pointer;
+
+    transition: color 100ms, background-color 100ms;
+
+    & .title {
+        font-weight: 800;
+        height: 1.2em;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+    & .content-preview {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+    }
+}
+
+.note:hover {
+    background-color: var(--highlight-stand);
+    color: var(--b-offcolor-stand);
+}
+
+.dialog-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+}
+
+.dialog {
+    background-color: var(--b-offcolor-stand);
+    padding: .5rem;
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin: 2rem;
+    width: 800px;
+    min-width: 270px;
+    height: 400px;
+
+    & input, & textarea {
+        font-size: 1rem;
+        width: calc(100% - 1rem);
+        resize: none;
+        padding: .5rem;
+        border: none;
+        border-radius: .5rem;
+        background-color: var(--b-offcolor-stand);
+        color: var(--highlight-stand);
+
+        transition: background-color 100ms;
+    }
+    & input:hover, & input:focus, & textarea:hover, & textarea:focus {
+        background-color: var(--offcolor-stand);
+        outline: none;
+    }
+    & input::placeholder, & textarea::placeholder {
+        color: var(--b-highlight-stand);
+    }
+    & input {
+        font-weight: 800;
+    }
+    & textarea {
+        height: 10rem;
+        height: calc(100% - 1rem);
+    }
+    & textarea::-webkit-scrollbar {
+        width: 10px
+    }
+    & textarea::-webkit-scrollbar-thumb {
+        background: #00000044;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    & textarea::-webkit-scrollbar-track {
+        border-radius: 10px;
+    }
+
+    & button {
+        padding: .5rem 1rem;
+        border: none;
+        border-radius: .5rem;
+        font-weight: 800;
+        background-color: var(--b-offcolor-stand);
+        color: var(--highlight-stand);
+        cursor: pointer;
+
+        transition: color 100ms, background-color 100ms;
+    }
+    & button:hover, button:focus {
+        background-color: var(--highlight-stand);
+        color: var(--b-offcolor-stand);
+        outline: none;
+    }
+    & button.delete {
+        background-color: var(--b-offcolor-stand);
+        color: var(--highlight-stand);
+    }
+    & button.delete:hover {
+        background-color: var(--highlight-error);
+        color: var(--b-offcolor-error);
+    }
+    & button.delete:hover, button.delete:focus {
+        background-color: var(--highlight-error);
+        color: var(--b-offcolor-error);
+    }
+
+    & .buttons {
+        display: flex;
+        gap: .5rem;
+        justify-content: space-between;
+    }
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.non-notes {
+    color: var(--b-highlight-stand);
+    width: 100%;
+    text-align: center;
+}
+
+.delete-confirm-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    
+    & input {
+        display: none;
+    }
+    & .delete-confirm {
+        background-color: var(--b-offcolor-stand);
+        padding: 1rem;
+        border-radius: .5rem;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        margin: 2rem;
+        width: 400px;
+        min-width: 270px;
+        height: 80px;
+        justify-content: space-between;
+        align-items: center;
+    }
+    & .text {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    & .delete-confirm .buttons {
+        width: 100%;
+        display: flex;
+        column-gap: 1rem;
+    }
+    & .delete-confirm .buttons > button {
+        width: calc(50% - .5rem);
+        padding: .5rem 1rem;
+        border: none;
+        border-radius: .5rem;
+        font-weight: 800;
+        background-color: var(--b-offcolor-stand);
+        color: var(--highlight-stand);
+        cursor: pointer;
+
+        transition: color 100ms, background-color 100ms;
+    }
+    & .delete-confirm .buttons > button:hover {
+        background-color: var(--highlight-stand);
+        color: var(--b-offcolor-stand);
+    }
+    & .delete-confirm .buttons > :nth-child(1):hover {
+        background-color: var(--highlight-error);
+        color: var(--b-offcolor-error);
+    }
+}
+
+.logout-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    
+    & input {
+        display: none;
+    }
+    & .logout-confirm {
+        background-color: var(--b-offcolor-stand);
+        padding: 1rem;
+        border-radius: .5rem;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        margin: 2rem;
+        width: 400px;
+        min-width: 270px;
+        height: 80px;
+        justify-content: space-between;
+        align-items: center;
+    }
+    & .text {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    & .logout-confirm .buttons {
+        width: 100%;
+        display: flex;
+        column-gap: 1rem;
+    }
+    & .logout-confirm .buttons > button {
+        width: calc(50% - .5rem);
+        padding: .5rem 1rem;
+        border: none;
+        border-radius: .5rem;
+        font-weight: 800;
+        background-color: var(--b-offcolor-stand);
+        color: var(--highlight-stand);
+        cursor: pointer;
+
+        transition: color 100ms, background-color 100ms;
+    }
+    & .logout-confirm .buttons > button:hover {
+        background-color: var(--highlight-stand);
+        color: var(--b-offcolor-stand);
+    }
+    & .logout-confirm .buttons > :nth-child(1):hover {
+        background-color: var(--highlight-error);
+        color: var(--b-offcolor-error);
+    }
+}
+
+.loading {
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::after {
+        animation: FlipLoading 1s infinite linear;
+        content: '';
+        position: absolute;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        border: solid .25rem var(--highlight-stand);
+        /* border-bottom-color: var(--b-offcolor-stand); */
+        border-bottom-color: transparent;
+    }
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    column-gap: 1rem;
+    margin: 1rem 0;
+
+    & a {
+        font-weight: 800;
+        text-decoration: none;
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        border-radius: 50%;
+        justify-content: center;
+        background-color: var(--b-offcolor-stand);
+        color: var(--highlight-stand);
+
+        transition: color 100ms, background-color 100ms;
+
+        &:hover, &:focus, &.active {
+            background-color: var(--highlight-stand);
+            color: var(--b-offcolor-stand);
+        }
+    }
+}
+
+.x-hatch {
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    margin-block: .5rem 1rem;
+    user-select: none;
+}
+
+@media (max-width: 500px) {
+    .note-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    nav {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 1fr;
+
+        & button.create-note {
+            width: 100%;
+        }
+        & form {
+            grid-template-columns: 5fr 1fr;
+            display: grid;
+            column-gap: .25rem;
+        }
+    }
+
+    .dialog {
+        padding: 2rem;
+        position: fixed;
+        z-index: 3;
+        width: calc(100% - 1rem);
+        height: calc(100% - 1rem);
+    }
+}
+@keyframes FlipLoading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

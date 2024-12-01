@@ -1,0 +1,31 @@
+{
+  "name": "chx-note",
+  "version": "1.0.0",
+  "description": "ChX Note",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kkericm/chx-note.git"
+  },
+  "author": "Ericn't",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kkericm/chx-note/issues"
+  },
+  "homepage": "https://github.com/kkericm/chx-note#readme",
+  "dependencies": {
+    "@sendgrid/mail": "^8.1.4",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "chx-note": "file:",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-session": "^1.18.1",
+    "mongoose": "^8.8.2"
+  }
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChX Note | Settings</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/icon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="/styles/settings.css">
+    <link rel="stylesheet" href="/styles/globals.css">
+    <link rel="stylesheet" href="/styles/home.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=home,arrow_outward,edit_square" />
+</head>
+<body class="<%= theme %>">
+    <div class="logout-container hidden">
+        <form class="logout-confirm" action="/logout" method="post">
+            <span class="text">Tem certeza que deseja sair da conta?</span>
+            <span class="buttons">
+                <button type="submit">Sair</button>
+                <button type="button" onclick="toggleQuitDialog()">Cancelar</button>
+            </span>
+        </form>
+    </div>
+    <header>
+        <div class="h-1">
+            <a class="text-logo" href="/">
+                <span class="material-symbols-outlined">edit_square</span>
+                ChX Note
+            </a>
+            <span class="user-data">
+                <a href="/home" class="icon-button">
+                    <span class="material-symbols-outlined">home</span>
+                </a>
+            </span>
+        </div>
+    </header>
+    <main>
+        <section>
+            <div class="text-content">
+                <h3>Minha Conta</h3>
+                <p>Seu log-in foi feito com <span class="b-8"><%= current_user %></span>.</p>
+            </div>
+            <button class="logout-button default" onclick="toggleQuitDialog()">Sair</button>
+        </section>
+        <hr>
+        <section>
+            <div class="text-content">
+                <h3>Tema Claro</h3>
+                <p>Muda o tema do site.</p>
+            </div>
+            <div class="toggle <%= theme_preference == 'light' ? 'check' : '' %>" onclick="toggle(this)"></div>
+        </section>
+        <hr>
+        <section>
+            <div class="text-content">
+                <h3>Sobre</h3>
+                <p>Veja mais no meu Github.</p>
+            </div>
+            <a href="https://github.com/kkericm" class="a-default b-out">
+                <span class="material-symbols-outlined">arrow_outward</span>
+            </a>
+        </section>
+    </main>
+
+    <script src="/scripts/settings.js"></script>
+    <script src="/scripts/home.js"></script>
+</body>
+</html>

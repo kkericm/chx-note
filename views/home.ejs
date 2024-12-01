@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChX Note</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/images/icon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="/styles/globals.css">
+    <link rel="stylesheet" href="/styles/home.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=settings,arrow_back_ios,arrow_forward_ios,edit_square" />
+</head>
+<body class="<%= theme %>">
+    <div class="dialog-container hidden">
+        <div class="loading"></div>
+        <form class="dialog hidden" action="/sync" method="post">
+            <input class="id" type="hidden" name="id">
+            <input type="hidden" name="page" value="<%= current_page %>">
+            <input class="title" type="text" placeholder="Título" name="title" required>
+            <textarea placeholder="Conteúdo" name="content"></textarea>
+            <div class="buttons">
+                <button class="delete" type="button" onclick="toggleDeleteConfirm()">Deletar</button>
+                <span>
+                    <button class="save" type="submit" name="action" value="save">Salvar</button>
+                    <button class="cancel" type="reset" onclick="closeDialog()" autofocus>Cancelar</button>
+                </span>
+            </div>
+        </form>
+    </div>
+    <div class="delete-confirm-container hidden">
+        <form class="delete-confirm" action="/sync" method="post">
+            <input class="id" type="hidden" name="id">
+            <input type="hidden" name="page" value="<%= current_page %>">
+            <span class="text">Tem certeza que deseja deletar está nota?</span>
+            <span class="buttons">
+                <button type="submit" name="action" value="delete">Confirmo</button>
+                <button type="button" onclick="toggleDeleteConfirm()">Cancelar</button>
+            </span>
+        </form>
+    </div>
+
+    <header>
+        <div class="h-1">
+            <a class="text-logo" href="/">
+                <span class="material-symbols-outlined">edit_square</span>
+                ChX Note
+            </a>
+            <span class="user-data">
+                <!-- Login como <span class="user-name"><%= userstate %></span> -->
+                <a href="/settings" class="icon-button">
+                    <span class="material-symbols-outlined">settings</span>
+                </a>
+            </span>
+        </div>
+    </header>
+    
+    <main>
+        <nav>
+            <form action="/search" method="get">
+                <input type="text" placeholder="Procurar" name="search" value="<%= search_query %>">
+                <button class="search">Buscar</button>
+            </form>
+            <button class="create-note" onclick="createNote()">Criar nota</button>
+            <!-- <span class="search-results">
+                <a href="/" class="close">&times;</a>
+                <span>Resultados de "<span class="b-8">Note</span>"</span>
+            </span> -->
+            <%- search_results %>
+        </nav>
+
+        <%- notes %>
+
+        <span class="non pages"><%= page_quantity %></span>
+        <!-- <span class="non pages">10</span> -->
+        <span class="non page"><%= current_page %></span>
+        <div class="pagination">
+            <a href="/home?page=1" class="arrow_back">
+                <span style="margin-left: .5rem;" class="material-symbols-outlined">arrow_back_ios</span>
+            </a>
+            <a id="page-0" href="/home?page=0">1</a>
+            <a href="/home?page=1" class="arrow_next">
+                <span class="material-symbols-outlined">arrow_forward_ios</span>
+            </a>
+        </div>
+    </main>
+
+
+    <script src="/scripts/home.js"></script>
+</body>
+</html>

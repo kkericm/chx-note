@@ -1,0 +1,31 @@
+
+body {
+    height: 70vh;
+    display: flex;
+    align-items: top;
+    justify-content: center;
+}
+
+form {
+    margin-top: 30px;
+    background-color: var(--b-offcolor-stand);
+    display: grid;
+    row-gap: 1rem;
+    justify-items: start;
+    padding: 1.5rem 1rem;
+    border-radius: .5rem;
+
+    width: 350px;
+    height: fit-content;
+
+    & span.title {
+        font-size: larger;
+        font-weight: 800;
+    }
+    & span.email {
+        font-weight: 800;
+    }
+    & button.default {
+        width: 100%;
+    }
+}
