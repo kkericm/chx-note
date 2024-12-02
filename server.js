@@ -286,7 +286,8 @@ app.listen(parseInt(process.env.PORT) || 3333, () => {
             await user.deleteOne();
         });
     })
-    console.log(`App listening on http://localhost:${process.env.PORT || 3333}`)
+    // console.log(`App listening on http://localhost:${process.env.PORT || 3333}`)
+    console.log(`App listening.`)
 });
 
 const getUserAccount = async (email, password) => {
