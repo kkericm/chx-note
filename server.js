@@ -5,7 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 require('dotenv').config();
 
 const sgMail = require('@sendgrid/mail');
@@ -66,13 +66,13 @@ app.get('/home', async (req, res) => {
             </div>`
         }
         v_notes += '</div>';
-        
+
         if (user_notes.length === 0 && search) {
             v_notes = `<span class="non-notes">Sem resultados para busca...</span>`;
         } else if (user_notes.length === 0) {
             v_notes = `<span class="non-notes">Você ainda não tem notas...</span>`;
         }
-    
+
         res.render('home', {
             notes: v_notes,
             userstate: req.session.email,
@@ -89,7 +89,7 @@ app.get('/home', async (req, res) => {
 app.post('/sync', async (req, res) => {
     const user = req.session.email
     const { id, action, title, content, page } = req.body
-    
+
     if (id == 'new' && action == 'save') {
         let new_note = {
             title: title,
@@ -105,7 +105,7 @@ app.post('/sync', async (req, res) => {
     } else {
         await deleteNote(user, id);
     }
-    
+
     res.redirect(`/home?page=${page}`);
 });
 
@@ -124,9 +124,9 @@ app.get('/login', async (req, res) => {
             ['Usuário ou senha incorretos', ''],
             ['', 'Email já cadastrado.'],
         ]
-        res.render('login', { 
-            error_message_login: messages[req.query.err_type ?? 0][0], 
-            error_message_registre: messages[req.query.err_type ?? 0][1], 
+        res.render('login', {
+            error_message_login: messages[req.query.err_type ?? 0][0],
+            error_message_registre: messages[req.query.err_type ?? 0][1],
             form_type: req.query.form_type ?? 'login',
             theme: 'dark'
         });
@@ -161,7 +161,7 @@ app.post('/registre', async (req, res) => {
             await UserAccount.findOneAndUpdate(
                 { email: email },
                 {
-                    $set: { 
+                    $set: {
                         password: await bcrypt.hash(password, 10),
                         verify_code: verify_code,
                     }
@@ -194,8 +194,8 @@ app.get('/validation', async (req, res) => {
     if (req.session.email) {
         res.redirect('/');
     } else {
-        res.render('validation', { 
-            error_message_validation: '', 
+        res.render('validation', {
+            error_message_validation: '',
             email: email
         });
     }
@@ -207,7 +207,7 @@ app.post('/validation', async (req, res) => {
         {
             $set: {
                 verify: true
-            } 
+            }
         }
     );
 
@@ -230,7 +230,7 @@ app.post('/validation', async (req, res) => {
 
 app.get('/settings', async (req, res) => {
     if (req.session.email) {
-        res.render('settings', { 
+        res.render('settings', {
             current_user: req.session.email,
             theme_preference: (await UserSettings.findOne({ email: req.session.email })).view_settings.theme_preference,
             theme: await getTheme(req.session.email)
@@ -243,11 +243,11 @@ app.get('/settings', async (req, res) => {
 
 app.get('/api/:type', async (req, res) => {
     const { type } = req.params;
-    
+
     const _ = {
         async 'note-data'() {
             const { id } = req.query
-            
+
             const note = (await findUser(req.session.email)).notes.find(note => note._id == id);
             res.json(note.toJSON());
         }
@@ -269,7 +269,7 @@ app.post('/api/:type', async (req, res) => {
                     }
                 }
             );
-            
+
             res.status(200).json({ success: true });
         }
     }[type]();
@@ -286,7 +286,6 @@ app.listen(parseInt(process.env.PORT) || 3333, () => {
             await user.deleteOne();
         });
     })
-    // console.log(`App listening on http://localhost:${process.env.PORT || 3333}`)
     console.log(`App listening.`)
 });
 
@@ -310,10 +309,10 @@ const editNote = async (email, id, new_data) => {
     await User.findOneAndUpdate(
         { email: email, "notes._id": id },
         {
-            $set: { 
+            $set: {
                 "notes.$.title": new_data.title,
                 "notes.$.content": new_data.content
-            } 
+            }
         }
     );
 }
@@ -331,6 +330,6 @@ const getTheme = async (email) => {
     return user.view_settings.theme_preference;
 }
 
-const normalize = (str) => { 
-    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); 
+const normalize = (str) => {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
